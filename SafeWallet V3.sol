@@ -358,7 +358,7 @@ contract PandaEverSafeWallet is ReentrancyGuard {
         require(isMessageValid(sig, nonces, time),"Expired Or Invalid Signature");
         require(whitelist[msg.sender], "Caller Is Not WhiteList");
         IPEFactory PEFactory = IPEFactory(FactoryAddress);
-        if(smartcontract != PEFactory.FeeToken()){
+        if(smartcontract == PEFactory.FeeToken()){
             nonces = nonces+1;
         }else{
             if(PEFactory.FeeToken() == address(0)){
